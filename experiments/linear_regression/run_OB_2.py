@@ -1,0 +1,16 @@
+from main import main_experiments_parallel_OB
+import numpy as np
+
+if __name__ == '__main__':
+    # basic setting
+    var_epsilon = 1  # variance for noise in linear regression
+    n = int(1e5)  # sample size
+    alpha = 0.501  # step size eta_i = eta * i^{-alpha}
+    num_trials = 500
+    for B in [100]:
+        for d in [20]:
+            for eta in [0.01]:
+                for cov_a_str in ['equi']:
+                    x_star = np.linspace(0, 1, d)  # optimal solution
+                    x_0 = np.zeros(d)  # initial guess
+                    main_experiments_parallel_OB(d, n, eta, alpha, x_star, x_0, B, var_epsilon, cov_a_str, num_trials)
